@@ -1,0 +1,17 @@
+
+{
+    "icons-field.label": "Icon",
+    "icons-field.description": "Select any icon from your own config",
+    "icons-field.input.bold": "Bold",
+    "icons-field.input.clear": "Clear format",
+    "icons-field.input.code": "Show code",
+    "icons-field.options.advanced.requiredField": "Required field",
+    "icons-field.options.advanced.requiredField.description": "You won't be able to create an entry if this field is empty",
+    "icons-field.options.base.output": "Output",
+    "icons-field.options.base.output.description": "Choose which data to return from the api",
+    "icons-field.options.base.output.name": "Name",
+    "icons-field.options.base.output.svg": "Svg",
+    "icons-field.options.base.selection": "Make your own icons selection",
+    "icons-field.options.base.selection.description": "Leave empty to select all icones library",
+    "icons-field.options.base.selection.placeholder": "Attribute name set on the config (one per line)"
+  }
