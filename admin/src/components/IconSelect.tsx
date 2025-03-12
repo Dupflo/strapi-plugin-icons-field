@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { useIntl } from 'react-intl';
-import { Field, Typography, Box, SingleSelect, SingleSelectOption } from '@strapi/design-system';
+import { Box, Field, SingleSelect, SingleSelectOption, Typography } from '@strapi/design-system';
 import { useFetchClient } from '@strapi/strapi/admin';
-import Icon from './Icon';
+import React, { useEffect, useMemo, useState } from 'react';
+import { useIntl } from 'react-intl';
 import { PLUGIN_ID } from '../pluginId';
+import Icon from './Icon';
 
 interface Icon {
   name: string;
@@ -54,7 +54,7 @@ const IconSelect: React.FC<IconSelectProps> = (props) => {
 
         const { selection } = attribute.options;
 
-        if (selection.length > 0 && selection[0] !== '') {
+        if (selection && (selection.length > 0 || selection[0] !== '')) {
           setIcons(data.filter((icon: Icon) => selection.includes(icon.name)));
         } else {
           setIcons(data);

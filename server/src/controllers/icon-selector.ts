@@ -7,6 +7,6 @@ type IconType = {
 
 export default ({ strapi }: { strapi: Core.Strapi }) => ({
   getIcons(): IconType[] {
-    return strapi.config.get("plugin.icons-field.icons", [])
+    return strapi.config.get("plugin::icons-field.icons", [])
   },
 })
