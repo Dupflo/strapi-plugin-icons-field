@@ -1,6 +1,6 @@
 {
   "name": "strapi-plugin-icons-field",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A customizable plugin for Strapi to integrate an icons field into your content types.",
   "keywords": ["strapi", "plugin", "icons", "svg", "custom", "field"],
   "license": "MIT",
