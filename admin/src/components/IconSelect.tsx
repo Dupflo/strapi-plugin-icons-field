@@ -52,9 +52,14 @@ const IconSelect: React.FC<IconSelectProps> = (props) => {
         const { data } = await get(`/${PLUGIN_ID}/icons`);
         if (!data) return;
 
+        if (!attribute?.options?.selection) {
+          setIcons(data);
+          return;
+        }
+
         const { selection } = attribute.options;
 
-        if (selection && (selection.length > 0 || selection[0] !== '')) {
+        if (Array.isArray(selection) && selection.length > 0 && selection[0] !== '') {
           setIcons(data.filter((icon: Icon) => selection.includes(icon.name)));
         } else {
           setIcons(data);
