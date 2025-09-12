@@ -61,10 +61,10 @@
   "name": "strapi-plugin-icons-field",
   "description": "A customizable plugin for Strapi to integrate an icon field into your content types.",
   "license": "MIT",
-  "author": "Groupe ADP",
+  "author": "Florian Dupuis",
   "maintainers": [
     {
-      "name": "Florian Dupuis"
+      "name": "Groupe ADP"
     }
   ],
   "strapi": {
