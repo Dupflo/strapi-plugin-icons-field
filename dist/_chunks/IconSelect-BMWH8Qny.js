@@ -1,44 +1,36 @@
-import { jsxs, jsx, Fragment } from "react/jsx-runtime";
-import React, { useState, useEffect, useMemo } from "react";
-import { Field, Modal, Box, Button, Typography } from "@strapi/design-system";
-import { useFetchClient } from "@strapi/strapi/admin";
-import { P as PLUGIN_ID } from "./index-l_ZBfscD.mjs";
-import parse from "html-react-parser";
-import { useTheme } from "styled-components";
-import { CaretDown, Cross } from "@strapi/icons";
-import { useIntl } from "react-intl";
+"use strict";
+Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
+const jsxRuntime = require("react/jsx-runtime");
+const React = require("react");
+const designSystem = require("@strapi/design-system");
+const admin = require("@strapi/strapi/admin");
+const index = require("./index-CR-Z8Z4C.js");
+const parse = require("html-react-parser");
+const styled = require("styled-components");
+const icons = require("@strapi/icons");
+const reactIntl = require("react-intl");
+const _interopDefault = (e) => e && e.__esModule ? e : { default: e };
+const React__default = /* @__PURE__ */ _interopDefault(React);
+const parse__default = /* @__PURE__ */ _interopDefault(parse);
 function Icon({ icon, ...props }) {
-  const parsedElement = icon && parse(icon.trim());
-  if (parsedElement && React.isValidElement(parsedElement)) {
-    return React.cloneElement(parsedElement, props);
+  const parsedElement = icon && parse__default.default(icon.trim());
+  if (parsedElement && React__default.default.isValidElement(parsedElement)) {
+    return React__default.default.cloneElement(parsedElement, props);
   }
   return null;
 }
 const IconSelect = (props) => {
-  const theme = useTheme();
-  const intl = useIntl();
-  const {
-    label,
-    hint,
-    attribute,
-    description,
-    disabled,
-    error,
-    intlLabel,
-    name,
-    onChange,
-    placeholder,
-    required,
-    value
-  } = props;
-  const [icons, setIcons] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const { get } = useFetchClient();
+  const theme = styled.useTheme();
+  const intl = reactIntl.useIntl();
+  const { label, hint, attribute, disabled, error, name, onChange, placeholder, required, value } = props;
+  const [icons$1, setIcons] = React.useState([]);
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const { get } = admin.useFetchClient();
   const toggleModal = () => setIsModalOpen((prev) => !prev);
-  useEffect(() => {
+  React.useEffect(() => {
     const fetchIcons = async () => {
       try {
-        let url = `/${PLUGIN_ID}/icons`;
+        let url = `/${index.PLUGIN_ID}/icons`;
         if (attribute?.options?.selection) {
           if (Array.isArray(attribute.options.selection)) {
             url += `?selection=${encodeURIComponent(attribute.options.selection.join(","))}`;
@@ -57,8 +49,8 @@ const IconSelect = (props) => {
   const handleChange = (value2) => {
     onChange({ target: { name, value: value2, type: attribute.type } });
   };
-  const allIcons = useMemo(() => icons.flatMap((group) => group.icons), [icons]);
-  const selectedIcon = useMemo(() => {
+  const allIcons = React.useMemo(() => icons$1.flatMap((group) => group.icons), [icons$1]);
+  const selectedIcon = React.useMemo(() => {
     for (const icon of allIcons) {
       if (icon.svg === value) {
         return icon.svg;
@@ -70,24 +62,23 @@ const IconSelect = (props) => {
     e.stopPropagation();
     onChange({ target: { name, value: "", type: attribute.type } });
   };
-  console.log(props);
-  return /* @__PURE__ */ jsxs(Field.Root, { error, hint, children: [
-    /* @__PURE__ */ jsx(Field.Label, { children: label }),
-    /* @__PURE__ */ jsxs(
-      Modal.Root,
+  return /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Field.Root, { error, hint, required, children: [
+    /* @__PURE__ */ jsxRuntime.jsx(designSystem.Field.Label, { children: label }),
+    /* @__PURE__ */ jsxRuntime.jsxs(
+      designSystem.Modal.Root,
       {
         labelledBy: "icon-select-modal-title",
         open: isModalOpen,
         onOpenChange: setIsModalOpen,
         children: [
-          /* @__PURE__ */ jsx(Modal.Trigger, { children: /* @__PURE__ */ jsxs(
-            Box,
+          /* @__PURE__ */ jsxRuntime.jsx(designSystem.Modal.Trigger, { children: /* @__PURE__ */ jsxRuntime.jsxs(
+            designSystem.Box,
             {
               display: "flex",
               style: { alignItems: "center", gap: "12px", position: "relative", width: "100%" },
               children: [
-                /* @__PURE__ */ jsx("div", { style: { position: "relative", flex: 1 }, children: /* @__PURE__ */ jsx(
-                  Button,
+                /* @__PURE__ */ jsxRuntime.jsx("div", { style: { position: "relative", flex: 1 }, children: /* @__PURE__ */ jsxRuntime.jsx(
+                  designSystem.Button,
                   {
                     variant: "tertiary",
                     disabled,
@@ -99,7 +90,7 @@ const IconSelect = (props) => {
                       alignItems: "center",
                       justifyContent: "space-between"
                     },
-                    children: /* @__PURE__ */ jsxs(
+                    children: /* @__PURE__ */ jsxRuntime.jsxs(
                       "div",
                       {
                         style: {
@@ -108,18 +99,18 @@ const IconSelect = (props) => {
                           gap: "8px"
                         },
                         children: [
-                          selectedIcon ? /* @__PURE__ */ jsxs(Fragment, { children: [
-                            /* @__PURE__ */ jsx(Icon, { icon: selectedIcon, style: { height: "24px", display: "block" } }),
-                            /* @__PURE__ */ jsx(Typography, { variant: "pi", children: (() => {
+                          selectedIcon ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+                            /* @__PURE__ */ jsxRuntime.jsx(Icon, { icon: selectedIcon, style: { height: "24px", display: "block" } }),
+                            /* @__PURE__ */ jsxRuntime.jsx(designSystem.Typography, { variant: "pi", children: (() => {
                               const found = allIcons.find((icon) => icon.svg === selectedIcon);
                               return found ? found.name : "Unknown icon";
                             })() })
-                          ] }) : /* @__PURE__ */ jsx(Typography, { style: { fontWeight: "400" }, children: placeholder ?? intl.formatMessage({
+                          ] }) : /* @__PURE__ */ jsxRuntime.jsx(designSystem.Typography, { style: { fontWeight: "400" }, children: placeholder ?? intl.formatMessage({
                             id: "icons-field.select",
                             defaultMessage: "Select an icon"
                           }) }),
-                          /* @__PURE__ */ jsx(
-                            CaretDown,
+                          /* @__PURE__ */ jsxRuntime.jsx(
+                            icons.CaretDown,
                             {
                               color: theme.colors?.neutral500,
                               style: {
@@ -135,7 +126,7 @@ const IconSelect = (props) => {
                     )
                   }
                 ) }),
-                selectedIcon && /* @__PURE__ */ jsx(
+                selectedIcon && /* @__PURE__ */ jsxRuntime.jsx(
                   "button",
                   {
                     type: "button",
@@ -148,20 +139,20 @@ const IconSelect = (props) => {
                       cursor: "pointer",
                       zIndex: 3
                     },
-                    children: /* @__PURE__ */ jsx(Cross, { color: theme.colors?.neutral500, style: { height: "100%", width: "100%" } })
+                    children: /* @__PURE__ */ jsxRuntime.jsx(icons.Cross, { color: theme.colors?.neutral500, style: { height: "100%", width: "100%" } })
                   }
                 )
               ]
             }
           ) }),
-          /* @__PURE__ */ jsxs(Modal.Content, { children: [
-            /* @__PURE__ */ jsx(Modal.Header, { children: /* @__PURE__ */ jsx(Typography, { fontWeight: "bold", textColor: "neutral800", as: "h2", id: "title", children: intl.formatMessage({
+          /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Modal.Content, { children: [
+            /* @__PURE__ */ jsxRuntime.jsx(designSystem.Modal.Header, { children: /* @__PURE__ */ jsxRuntime.jsx(designSystem.Typography, { fontWeight: "bold", textColor: "neutral800", as: "h2", id: "title", children: intl.formatMessage({
               id: "icons-field.modal.title",
               defaultMessage: "Select an icon"
             }) }) }),
-            /* @__PURE__ */ jsx(Modal.Body, { children: icons.map((group) => /* @__PURE__ */ jsxs(Box, { marginBottom: 6, children: [
-              /* @__PURE__ */ jsx(
-                Typography,
+            /* @__PURE__ */ jsxRuntime.jsx(designSystem.Modal.Body, { children: icons$1.map((group) => /* @__PURE__ */ jsxRuntime.jsxs(designSystem.Box, { marginBottom: 6, children: [
+              /* @__PURE__ */ jsxRuntime.jsx(
+                designSystem.Typography,
                 {
                   fontWeight: "bold",
                   textColor: "neutral800",
@@ -172,8 +163,8 @@ const IconSelect = (props) => {
                   children: group.folder
                 }
               ),
-              /* @__PURE__ */ jsx(Box, { display: "flex", marginTop: 2, style: { flexWrap: "wrap", gap: 6 }, children: group.icons.map((icon) => /* @__PURE__ */ jsxs(
-                Box,
+              /* @__PURE__ */ jsxRuntime.jsx(designSystem.Box, { display: "flex", marginTop: 2, style: { flexWrap: "wrap", gap: 6 }, children: group.icons.map((icon) => /* @__PURE__ */ jsxRuntime.jsxs(
+                designSystem.Box,
                 {
                   as: "button",
                   type: "button",
@@ -198,7 +189,7 @@ const IconSelect = (props) => {
                     width: "85px"
                   },
                   children: [
-                    /* @__PURE__ */ jsx(
+                    /* @__PURE__ */ jsxRuntime.jsx(
                       Icon,
                       {
                         icon: icon.svg,
@@ -210,13 +201,13 @@ const IconSelect = (props) => {
                         }
                       }
                     ),
-                    /* @__PURE__ */ jsx(Typography, { variant: "pi", fontWeight: "bold", style: { marginTop: 8 }, children: icon.name })
+                    attribute?.options?.showIconLabel && /* @__PURE__ */ jsxRuntime.jsx(designSystem.Typography, { variant: "pi", fontWeight: "bold", style: { marginTop: 8 }, children: icon.name })
                   ]
                 },
                 icon.name
               )) })
             ] }, group.folder)) }),
-            /* @__PURE__ */ jsx(Modal.Footer, { children: /* @__PURE__ */ jsx(Modal.Close, { children: /* @__PURE__ */ jsx(Button, { variant: "tertiary", children: intl.formatMessage({
+            /* @__PURE__ */ jsxRuntime.jsx(designSystem.Modal.Footer, { children: /* @__PURE__ */ jsxRuntime.jsx(designSystem.Modal.Close, { children: /* @__PURE__ */ jsxRuntime.jsx(designSystem.Button, { variant: "tertiary", children: intl.formatMessage({
               id: "icons-field.modal.close",
               defaultMessage: "Close window"
             }) }) }) })
@@ -224,9 +215,7 @@ const IconSelect = (props) => {
         ]
       }
     ),
-    /* @__PURE__ */ jsx(Field.Hint, {})
+    /* @__PURE__ */ jsxRuntime.jsx(designSystem.Field.Hint, {})
   ] });
 };
-export {
-  IconSelect as default
-};
+exports.default = IconSelect;

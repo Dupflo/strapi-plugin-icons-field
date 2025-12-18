@@ -27,20 +27,8 @@ const IconSelect = (props: IconSelectProps) => {
   const theme = useTheme() as any;
   const intl = useIntl();
 
-  const {
-    label,
-    hint,
-    attribute,
-    description,
-    disabled,
-    error,
-    intlLabel,
-    name,
-    onChange,
-    placeholder,
-    required,
-    value,
-  } = props;
+  const { label, hint, attribute, disabled, error, name, onChange, placeholder, required, value } =
+    props;
 
   const [icons, setIcons] = useState<
     Array<{ folder: string; icons: Array<{ name: string; svg: string }> }>
@@ -91,10 +79,8 @@ const IconSelect = (props: IconSelectProps) => {
     onChange({ target: { name, value: '', type: attribute.type } });
   };
 
-  console.log(props);
-
   return (
-    <Field.Root error={error} hint={hint}>
+    <Field.Root error={error} hint={hint} required={required}>
       <Field.Label>{label}</Field.Label>
       <Modal.Root
         labelledBy="icon-select-modal-title"
@@ -236,9 +222,11 @@ const IconSelect = (props: IconSelectProps) => {
                           width: '100%',
                         }}
                       />
-                      <Typography variant="pi" fontWeight="bold" style={{ marginTop: 8 }}>
-                        {icon.name}
-                      </Typography>
+                      {attribute?.options?.showIconLabel && (
+                        <Typography variant="pi" fontWeight="bold" style={{ marginTop: 8 }}>
+                          {icon.name}
+                        </Typography>
+                      )}
                     </Box>
                   ))}
                 </Box>
