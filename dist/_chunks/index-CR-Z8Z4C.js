@@ -57,7 +57,7 @@ const index = {
         defaultMessage: "Select any icon from your own config"
       },
       components: {
-        Input: async () => Promise.resolve().then(() => require("./IconSelect-BTMHEcaT.js"))
+        Input: async () => Promise.resolve().then(() => require("./IconSelect-BMWH8Qny.js"))
       },
       options: {
         base: [
@@ -96,6 +96,18 @@ const index = {
                   id: `${PLUGIN_ID}.options.advanced.requiredField.description`,
                   defaultMessage: "You won't be able to create an entry if this field is empty"
                 }
+              },
+              {
+                name: "options.showIconLabel",
+                type: "checkbox",
+                intlLabel: {
+                  id: `${PLUGIN_ID}.options.advanced.showIconLabel`,
+                  defaultMessage: "Show icon label"
+                },
+                description: {
+                  id: `${PLUGIN_ID}.options.advanced.showIconLabel.description`,
+                  defaultMessage: "Show the icon label in the selected icon"
+                }
               }
             ]
           }
@@ -113,7 +125,7 @@ const index = {
     return Promise.all(
       locales.map(async (locale) => {
         try {
-          const { default: data } = await __variableDynamicImportRuntimeHelper(/* @__PURE__ */ Object.assign({ "./translations/en.json": () => Promise.resolve().then(() => require("./en-CpHlSgf0.js")), "./translations/fr.json": () => Promise.resolve().then(() => require("./fr-DNE3HvKw.js")) }), `./translations/${locale}.json`, 3);
+          const { default: data } = await __variableDynamicImportRuntimeHelper(/* @__PURE__ */ Object.assign({ "./translations/en.json": () => Promise.resolve().then(() => require("./en-BmdMZ6Qh.js")), "./translations/fr.json": () => Promise.resolve().then(() => require("./fr-xGzjcs0y.js")) }), `./translations/${locale}.json`, 3);
           return { data, locale };
         } catch {
           return { data: {}, locale };

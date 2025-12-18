@@ -61,6 +61,18 @@ export default {
                   defaultMessage: "You won't be able to create an entry if this field is empty",
                 },
               },
+              {
+                name: 'options.showIconLabel',
+                type: 'checkbox',
+                intlLabel: {
+                  id: `${PLUGIN_ID}.options.advanced.showIconLabel`,
+                  defaultMessage: 'Show icon label',
+                },
+                description: {
+                  id: `${PLUGIN_ID}.options.advanced.showIconLabel.description`,
+                  defaultMessage: 'Show the icon label in the selected icon',
+                },
+              },
             ],
           },
         ],

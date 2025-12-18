@@ -1,16 +1,16 @@
 
 <div align="center" width="150px">
-  <img style="height: auto;" src="https://github.com/Dupflo/strapi-plugin-icons-field/blob/main/doc/logo.png" alt="Logo - Strapi Plugin Icon Field" />
+  <img style="height: auto;" src="doc/logo.png" alt="Logo - Strapi Plugin Icon Field" />
   <h1>Strapi Icons Custom Field </h1>
   <p>
     A customizable plugin for Strapi to integrate an icon field into your content types. This plugin allows users to easily select icons for different fields, improving the flexibility and user experience of your Strapi-based CMS.
   </p>
   <p>
    <a href="https://strapi.io">
-      <img src="https://img.shields.io/badge/strapi-v4-blue" alt="Strapi supported version" />
+      <img src="https://img.shields.io/badge/strapi-v5-blue" alt="Strapi supported version" />
     </a>
   </p>
-   <img style="height: auto;" src="https://github.com/Dupflo/strapi-plugin-icons-field/blob/main/doc/ct-plugin-icons-field.jpg" alt="Screenshot for Strapi icons field plugin" />
+   <img style="height: auto;" src="doc/ct-plugin-icons-field.jpg" alt="Screenshot for Strapi icons field plugin" />
 </div>
 
 ## Features 🎨
@@ -26,7 +26,7 @@
 
 Create an `icons` folder (or any name you prefer) inside the `/public` directory and add your SVG icons there. You can also organize and group your icons into subfolders, for example: `/icons/marketing`.
 
-![Screenshot from public folder for Strapi icons field plugin](https://github.com/Dupflo/strapi-plugin-icons-field/blob/main/doc/cf-plugin-public-folder.jpg)
+![Screenshot from public folder for Strapi icons field plugin](doc/cf-plugin-public-folder.jpg)
 
 The system will directly scan the specified folder and its subfolders to make all SVG icons available for selection in the plugin.
 
@@ -73,13 +73,13 @@ Once the plugin is installed, you will be able to add an icon field to any conte
 4. Configure the field as needed (e.g., allowing custom subfolder icons selection or full list by default).
 5. Save and deploy your content type.
 
-![Plugin Icon Field](https://github.com/Dupflo/strapi-plugin-icons-field/blob/main/doc/cf-plugin-icons-field.jpg)
+![Plugin Icon Field](doc/cf-plugin-icons-field.jpg)
 
 ### Select an Icon
 
 Once the icon field is added to your content type, you can select an icon from a predefined set or add your own. The icons will be displayed on the content manager interface and can be used for various purposes like UI customization, categorization, and more!
 
-![Plugin Icon Field](https://github.com/Dupflo/strapi-plugin-icons-field/blob/main/doc/cf-plugin-modal.jpg)
+![Plugin Icon Field](doc/cf-plugin-modal.jpg)
 
 ## Select specific icons list ⚙️
 
@@ -87,7 +87,7 @@ If you don't want to display all your icons in the list, you can select apply a 
 
 This allows your team to leverage icons that match your project or use cases.
 
-![Plugin Basic Settings](https://github.com/Dupflo/strapi-plugin-icons-field/blob/main/doc/cf-plugin-public-folder.jpg)
+![Plugin Basic Settings](doc/cf-plugin-public-folder.jpg)
 
 ---
 
