@@ -1,6 +1,6 @@
 
 <div align="center" width="150px">
-  <img style="height: auto;" src="doc/logo.png" alt="Logo - Strapi Plugin Icon Field" />
+  <img style="height: auto;" src="https://raw.githubusercontent.com/Dupflo/strapi-plugin-icons-field/refs/heads/main/doc/logo.png" alt="Logo - Strapi Plugin Icon Field" />
   <h1>Strapi Icons Custom Field </h1>
   <p>
     A customizable plugin for Strapi to integrate an icon field into your content types. This plugin allows users to easily select icons for different fields, improving the flexibility and user experience of your Strapi-based CMS.
@@ -12,7 +12,7 @@
   </p>
 </div>
 
-![Plugin Icon Field](doc/ct-plugin-icons-field.webp)
+![Plugin Icon Field](https://raw.githubusercontent.com/Dupflo/strapi-plugin-icons-field/refs/heads/main/doc/ct-plugin-icons-field.webp)
 
 ## Features 🎨
 
@@ -81,11 +81,11 @@ You can enter **multiple folder names** to combine icons from different subfolde
 
 This allows your team to leverage icons that match your project or use cases.
 
-![Plugin Basic Settings](doc/ct-plugin-basic-settings.webp)
+![Plugin Basic Settings](https://raw.githubusercontent.com/Dupflo/strapi-plugin-icons-field/refs/heads/main/doc/ct-plugin-basic-settings.webp)
 
 ### Advanced Settings ⚙️
 
-![Advanced settings - API output format and show icon label](doc/cf-advanced-settings.webp)
+![Advanced settings - API output format and show icon label](https://raw.githubusercontent.com/Dupflo/strapi-plugin-icons-field/refs/heads/main/doc/cf-advanced-settings.webp)
 
 | Option | Type | Description |
 | --- | --- | --- |
@@ -120,7 +120,7 @@ See this [sandbox example](https://codesandbox.io/p/sandbox/svg-workflow-xf7p8j?
 
 Once the icon field is added to your collection type, you can select an icon from a predefined set or add your own. The icons will be displayed on the content manager interface and can be used for various purposes like UI customization, categorization, and more!
 
-![Plugin Icon Field](doc/cf-plugin-modal.webp)
+![Plugin Icon Field](https://raw.githubusercontent.com/Dupflo/strapi-plugin-icons-field/refs/heads/main/doc/cf-plugin-modal.webp)
 
 ## Usage in React.js ⚛️
 
