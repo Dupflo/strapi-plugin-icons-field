@@ -17,3 +17,4 @@ const fr = {
 export {
   fr as default
 };
+//# sourceMappingURL=fr-BVE1dfOu.mjs.map

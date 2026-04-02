@@ -17,3 +17,4 @@ const en = {
   "icons-field.modal.close": "Close window"
 };
 exports.default = en;
+//# sourceMappingURL=en-BmdMZ6Qh.js.map

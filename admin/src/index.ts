@@ -1,4 +1,3 @@
-import { getTranslation } from './utils/getTranslation';
 import { PLUGIN_ID } from './pluginId';
 import { Initializer } from './components/Initializer';
 import { PluginIcon } from './components/PluginIcon';
@@ -27,7 +26,7 @@ export default {
         base: [
           {
             name: 'options.selection',
-            type: 'textarea-enum',
+            type: 'text',
             intlLabel: {
               id: `${PLUGIN_ID}.options.base.selection`,
               defaultMessage: 'Choose a specific icons folder',
@@ -72,6 +71,41 @@ export default {
                   id: `${PLUGIN_ID}.options.advanced.showIconLabel.description`,
                   defaultMessage: 'Show the icon label in the selected icon',
                 },
+              },
+              {
+                name: 'options.outputFormat',
+                type: 'select',
+                defaultValue: 'svg',
+                intlLabel: {
+                  id: `${PLUGIN_ID}.options.advanced.outputFormat`,
+                  defaultMessage: 'API output format',
+                },
+                description: {
+                  id: `${PLUGIN_ID}.options.advanced.outputFormat.description`,
+                  defaultMessage: 'Choose what value is stored: the full SVG code or just the icon name (useful for SVG sprites)',
+                },
+                options: [
+                  {
+                    key: 'svg',
+                    value: 'svg',
+                    metadatas: {
+                      intlLabel: {
+                        id: `${PLUGIN_ID}.options.advanced.outputFormat.svg`,
+                        defaultMessage: 'SVG code (HTML)',
+                      },
+                    },
+                  },
+                  {
+                    key: 'name',
+                    value: 'name',
+                    metadatas: {
+                      intlLabel: {
+                        id: `${PLUGIN_ID}.options.advanced.outputFormat.name`,
+                        defaultMessage: 'Icon name',
+                      },
+                    },
+                  },
+                ],
               },
             ],
           },

@@ -216,3 +216,4 @@ const IconSelect = (props) => {
 export {
   IconSelect as default
 };
+//# sourceMappingURL=IconSelect-BMpDJEGH.mjs.map

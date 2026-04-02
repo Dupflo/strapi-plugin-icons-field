@@ -10,44 +10,45 @@
       <img src="https://img.shields.io/badge/strapi-v5-blue" alt="Strapi supported version" />
     </a>
   </p>
-   <img style="height: auto;" src="doc/ct-plugin-icons-field.jpg" alt="Screenshot for Strapi icons field plugin" />
 </div>
+
+![Plugin Icon Field](doc/ct-plugin-icons-field.webp)
 
 ## Features 🎨
 
 - **Icon Picker**: Adds an icon field to your content types, enabling users to select from a variety of preloaded icons.
+- **Search**: Filter icons by name directly in the picker modal.
+- **Flexible output**: Choose between returning the full SVG code or just the icon name — ideal for SVG sprite workflows.
 - **Customizable**: You can add any svg icons code directly from the `public` folder inside a custom subfolder (eg: `public/icons`), making this plugin adaptable to any design or theme.
 - **Pass SVG code directly into your API**: No additional package needed on your frontend. You can directly rendered the plugin with a [custom component](#render-svg-icons-in-react) custom component on your frontend.
+- **Dark mode**: The icon picker is fully compatible with Strapi's dark mode.
 - **User-friendly**: Simple, intuitive field for content managers to pick and manage icons.
+
+## Video Demo 🎬
+
+![Demo](https://res.cloudinary.com/djqnlydhz/image/upload/v1775137409/github/strapi-plugin-icons-field_rjufkc.gif)
 
 ## Installation 🛠️
 
-### 1. Add your icons
+### 1. Install the package
+
+```bash
+npm install strapi-plugin-icons-field
+```
+
+> No additional configuration in `config/plugins.ts` is required. The plugin is automatically registered once the package is installed.
+
+### 2. Add your icons to public folder
 
 Create an `icons` folder (or any name you prefer) inside the `/public` directory and add your SVG icons there. You can also organize and group your icons into subfolders, for example: `/icons/marketing`.
 
-![Screenshot from public folder for Strapi icons field plugin](doc/cf-plugin-public-folder.jpg)
+<img src="doc/cf-plugin-public-folder.webp" alt="Screenshot from public folder for Strapi icons field plugin" style="max-width: 400px; width: 100%; height: auto;" />
 
 The system will directly scan the specified folder and its subfolders to make all SVG icons available for selection in the plugin.
 
+### 3. Rebuild Strapi
 
-### 2. Configure the Plugin and the set publicPath
-
-Once installed, navigate to your `config/plugins.js` or `config/plugins.ts` file and add the plugin configuration:
-
-```ts
-export default ({ env }) => ({
-   'icons-field': {
-    enabled: true,
-    config: {
-      publicPath: 'icons'
-  },
-});
-```
-
-### 2. Rebuild Strapi
-
-After installing and configuring the plugin, rebuild your Strapi instance:
+After installing the plugin, rebuild your Strapi instance:
 
 ```bash
 npm run build
@@ -61,35 +62,65 @@ yarn build
 yarn develop
 ```
 
-## Usage 📋
+## Add the Icon Field to your Collection Type 📋
 
-### Add the Icon Field
-
-Once the plugin is installed, you will be able to add an icon field to any content type.
+Once the plugin is installed, you will be able to add an icon field to any collection type.
 
 1. Go to **Content-Types Builder** in the Strapi Admin Panel.
-2. Select the content type where you want to add the icon field.
+2. Select the collection type where you want to add the icon field.
 3. Choose **Icon** from the available field types.
 4. Configure the field as needed (e.g., allowing custom subfolder icons selection or full list by default).
-5. Save and deploy your content type.
+5. Save and deploy your collection type.
 
-![Plugin Icon Field](doc/cf-plugin-icons-field.jpg)
 
-### Select an Icon
+### Select a specific icons list ⚙️
 
-Once the icon field is added to your content type, you can select an icon from a predefined set or add your own. The icons will be displayed on the content manager interface and can be used for various purposes like UI customization, categorization, and more!
+If you don't want to display all your icons in the list, you can apply a custom selection by subfolder by entering their subfolder `name` attribute — one folder name per line.
 
-![Plugin Icon Field](doc/cf-plugin-modal.jpg)
-
-## Select specific icons list ⚙️
-
-If you don't want to display all your icons in the list, you can select apply a custom selection by subfolder to show by tapping their subfolder `name` attribute.
+You can enter **multiple folder names** to combine icons from different subfolders.
 
 This allows your team to leverage icons that match your project or use cases.
 
-![Plugin Basic Settings](doc/cf-plugin-public-folder.jpg)
+![Plugin Basic Settings](doc/ct-plugin-basic-settings.webp)
+
+### Advanced Settings ⚙️
+
+![Advanced settings - API output format and show icon label](doc/cf-advanced-settings.webp)
+
+| Option | Type | Description |
+| --- | --- | --- |
+| **Required field** | Checkbox | Makes the field mandatory — the entry cannot be saved without selecting an icon |
+| **Show icon label** | Checkbox | Displays the icon filename below each icon in the picker modal |
+| **API output format** | Select | Chooses what value gets stored in the API (see below) |
+
+#### Show icon label
+
+When enabled, the icon's filename is displayed below each icon in the picker modal. Useful when icons are not self-explanatory by shape alone.
+
+#### API output format
+
+Choose what value gets stored in the API:
+
+| Format | Stored value | Use case |
+| --- | --- | --- |
+| **SVG code (HTML)** *(default)* | Full SVG string | Render the icon directly without any extra dependency |
+| **Icon name** | Icon filename without extension | Reference icons in an SVG sprite (`<use href="#icon-name" />`) |
+
+A typical use case is when using an SVG sprite system on your frontend. The SVG code would be duplicated (once in the sprite, once via the API), but it allows the frontend to reference the icon in the sprite by its label:
+
+```html
+<svg><use href="#Ambassador" /></svg>
+```
+
+See this [sandbox example](https://codesandbox.io/p/sandbox/svg-workflow-xf7p8j?file=%2Fsrc%2Fcomponents%2FSvg.componet.tsx) for a practical implementation.
 
 ---
+
+## Assign an icon to your document
+
+Once the icon field is added to your collection type, you can select an icon from a predefined set or add your own. The icons will be displayed on the content manager interface and can be used for various purposes like UI customization, categorization, and more!
+
+![Plugin Icon Field](doc/cf-plugin-modal.webp)
 
 ## Usage in React.js ⚛️
 
@@ -176,8 +207,6 @@ You can also customize the SVG attributes (like `width`, `height`, or `fill`) by
 In this example, the SVG will be rendered with a custom size (`48x48`) and a blue color fill.
 
 ---
-
-This section should make it easy for users to integrate the SVG rendering feature in their React app! Let me know if you'd like to tweak anything.
 
 ## Contributing 🤝
 
