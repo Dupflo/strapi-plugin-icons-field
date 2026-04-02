@@ -42,7 +42,7 @@ npm install strapi-plugin-icons-field
 
 Create an `icons` folder (or any name you prefer) inside the `/public` directory and add your SVG icons there. You can also organize and group your icons into subfolders, for example: `/icons/marketing`.
 
-<img src="doc/cf-plugin-public-folder.webp" alt="Screenshot from public folder for Strapi icons field plugin" style="max-width: 400px; width: 100%; height: auto;" />
+<img src="https://raw.githubusercontent.com/Dupflo/strapi-plugin-icons-field/refs/heads/main/doc/cf-plugin-public-folder.webp" alt="Screenshot from public folder for Strapi icons field plugin" style="max-width: 400px; width: 100%; height: auto;" />
 
 The system will directly scan the specified folder and its subfolders to make all SVG icons available for selection in the plugin.
 
