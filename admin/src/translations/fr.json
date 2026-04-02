@@ -12,6 +12,13 @@
     "icons-field.change": "Changer d'icône",
     "icons-field.remove": "Supprimer l'icône",
     "icons-field.modal.title": "Sélectionner une icône",
-    "icons-field.modal.close": "Fermer la fenêtre"
+    "icons-field.modal.close": "Fermer la fenêtre",
+    "icons-field.modal.search.placeholder": "Rechercher une icône...",
+    "icons-field.modal.search.clear": "Effacer la recherche",
+    "icons-field.modal.search.empty": "Aucune icône trouvée.",
+    "icons-field.options.advanced.outputFormat": "Format de sortie API",
+    "icons-field.options.advanced.outputFormat.description": "Choisissez la valeur stockée : le code SVG complet ou simplement le nom de l'icône (utile pour les sprites SVG)",
+    "icons-field.options.advanced.outputFormat.svg": "Code SVG (HTML)",
+    "icons-field.options.advanced.outputFormat.name": "Nom de l'icône"
   }
   

@@ -136,3 +136,4 @@ const index = {
 };
 exports.PLUGIN_ID = PLUGIN_ID;
 exports.index = index;
+//# sourceMappingURL=index-CR-Z8Z4C.js.map

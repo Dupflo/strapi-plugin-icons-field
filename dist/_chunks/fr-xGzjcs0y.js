@@ -17,3 +17,4 @@ const fr = {
   "icons-field.modal.close": "Fermer la fenêtre"
 };
 exports.default = fr;
+//# sourceMappingURL=fr-xGzjcs0y.js.map
