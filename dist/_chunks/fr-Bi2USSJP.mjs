@@ -24,4 +24,3 @@ const fr = {
 export {
   fr as default
 };
-//# sourceMappingURL=fr-Bi2USSJP.mjs.map

@@ -265,4 +265,3 @@ const IconSelect = (props) => {
   ] });
 };
 exports.default = IconSelect;
-//# sourceMappingURL=IconSelect-DZBkpq7G.js.map

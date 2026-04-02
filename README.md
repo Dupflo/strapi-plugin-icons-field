@@ -1,6 +1,6 @@
 
 <div align="center" width="150px">
-  <img style="height: auto;" src="https://raw.githubusercontent.com/Dupflo/strapi-plugin-icons-field/refs/heads/main/doc/logo.png" alt="Logo - Strapi Plugin Icon Field" />
+  <img style="height: auto;" src="https://res.cloudinary.com/djqnlydhz/image/upload/v1775143826/github/logo_mhoegm.png" alt="Logo - Strapi Plugin Icon Field" />
   <h1>Strapi Icons Custom Field </h1>
   <p>
     A customizable plugin for Strapi to integrate an icon field into your content types. This plugin allows users to easily select icons for different fields, improving the flexibility and user experience of your Strapi-based CMS.
@@ -12,7 +12,7 @@
   </p>
 </div>
 
-![Plugin Icon Field](https://raw.githubusercontent.com/Dupflo/strapi-plugin-icons-field/refs/heads/main/doc/ct-plugin-icons-field.webp)
+![Plugin Icon Field](https://res.cloudinary.com/djqnlydhz/image/upload/v1775143825/github/ct-plugin-icons-field_c4zuoi.webp)
 
 ## Features 🎨
 
@@ -42,7 +42,7 @@ npm install strapi-plugin-icons-field
 
 Create an `icons` folder (or any name you prefer) inside the `/public` directory and add your SVG icons there. You can also organize and group your icons into subfolders, for example: `/icons/marketing`.
 
-<img src="https://raw.githubusercontent.com/Dupflo/strapi-plugin-icons-field/refs/heads/main/doc/cf-plugin-public-folder.webp" alt="Screenshot from public folder for Strapi icons field plugin" style="max-width: 400px; width: 100%; height: auto;" />
+<img src="https://res.cloudinary.com/djqnlydhz/image/upload/v1775143826/github/cf-plugin-public-folder_afnru2.webp" alt="Screenshot from public folder for Strapi icons field plugin" style="max-width: 400px; width: 100%; height: auto;" />
 
 The system will directly scan the specified folder and its subfolders to make all SVG icons available for selection in the plugin.
 
@@ -81,11 +81,11 @@ You can enter **multiple folder names** to combine icons from different subfolde
 
 This allows your team to leverage icons that match your project or use cases.
 
-![Plugin Basic Settings](https://raw.githubusercontent.com/Dupflo/strapi-plugin-icons-field/refs/heads/main/doc/ct-plugin-basic-settings.webp)
+![Plugin Basic Settings](https://res.cloudinary.com/djqnlydhz/image/upload/v1775143825/github/ct-plugin-basic-settings_ioabjt.webp)
 
 ### Advanced Settings ⚙️
 
-![Advanced settings - API output format and show icon label](https://raw.githubusercontent.com/Dupflo/strapi-plugin-icons-field/refs/heads/main/doc/cf-advanced-settings.webp)
+![Advanced settings - API output format and show icon label](https://res.cloudinary.com/djqnlydhz/image/upload/v1775143826/github/cf-advanced-settings_ibuz5s.webp)
 
 | Option | Type | Description |
 | --- | --- | --- |
@@ -120,7 +120,7 @@ See this [sandbox example](https://codesandbox.io/p/sandbox/svg-workflow-xf7p8j?
 
 Once the icon field is added to your collection type, you can select an icon from a predefined set or add your own. The icons will be displayed on the content manager interface and can be used for various purposes like UI customization, categorization, and more!
 
-![Plugin Icon Field](https://raw.githubusercontent.com/Dupflo/strapi-plugin-icons-field/refs/heads/main/doc/cf-plugin-modal.webp)
+![Plugin Icon Field](https://res.cloudinary.com/djqnlydhz/image/upload/v1775143826/github/cf-plugin-modal_gketqs.webp)
 
 ## Usage in React.js ⚛️
 

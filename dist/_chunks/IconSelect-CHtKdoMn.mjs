@@ -261,4 +261,3 @@ const IconSelect = (props) => {
 export {
   IconSelect as default
 };
-//# sourceMappingURL=IconSelect-CHtKdoMn.mjs.map

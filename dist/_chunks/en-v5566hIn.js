@@ -24,4 +24,3 @@ const en = {
   "icons-field.options.advanced.outputFormat.name": "Icon name"
 };
 exports.default = en;
-//# sourceMappingURL=en-v5566hIn.js.map

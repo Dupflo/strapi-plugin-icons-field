@@ -171,4 +171,3 @@ const index = {
 };
 exports.PLUGIN_ID = PLUGIN_ID;
 exports.index = index;
-//# sourceMappingURL=index-znfJzgjs.js.map
