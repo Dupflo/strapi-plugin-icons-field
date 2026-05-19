@@ -11,7 +11,8 @@ import { Field } from '@strapi/design-system';
 
 const ThemeableIcon = styled.span<{ $color: string }>`
   display: contents;
-  & > svg {
+  & > svg,
+  & > svg *[fill]:not([fill='none']) {
     fill: ${(p) => p.$color};
   }
   & > svg *[stroke]:not([stroke='none']) {
@@ -249,7 +250,9 @@ const IconSelect = (props: IconSelectProps) => {
                         style={{
                           alignItems: 'center',
                           aspectRatio: '1/1',
-                          background: theme.colors?.neutral0,
+                          background: isSelected
+                            ? theme.colors?.primary100
+                            : theme.colors?.neutral100,
                           border: isSelected
                             ? `2px solid ${theme.colors?.primary600}`
                             : `1px solid ${theme.colors?.neutral200}`,

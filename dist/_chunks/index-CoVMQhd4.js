@@ -57,7 +57,7 @@ const index = {
         defaultMessage: "Select any icon from your own config"
       },
       components: {
-        Input: async () => Promise.resolve().then(() => require("./IconSelect-DZBkpq7G.js"))
+        Input: async () => Promise.resolve().then(() => require("./IconSelect-C3tI7nD-.js"))
       },
       options: {
         base: [
