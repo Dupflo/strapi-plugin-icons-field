@@ -4,7 +4,7 @@ const jsxRuntime = require("react/jsx-runtime");
 const React = require("react");
 const designSystem = require("@strapi/design-system");
 const admin = require("@strapi/strapi/admin");
-const index = require("./index-CoVMQhd4.js");
+const index = require("./index-BxK51aFm.js");
 const parse = require("html-react-parser");
 const styled = require("styled-components");
 const icons = require("@strapi/icons");
@@ -22,14 +22,38 @@ function Icon({ icon, ...props }) {
 }
 const ThemeableIcon = styled__default.default.span`
   display: contents;
-  & > svg,
+
+  & > svg {
+    color: ${(p) => p.$color};
+  }
+
+  & > svg[stroke]:not([stroke='none']) {
+    stroke: ${(p) => p.$color};
+  }
+
+  & > svg:not([stroke]) {
+    fill: ${(p) => p.$color};
+  }
+
   & > svg *[fill]:not([fill='none']) {
     fill: ${(p) => p.$color};
   }
+
   & > svg *[stroke]:not([stroke='none']) {
     stroke: ${(p) => p.$color};
+    fill: none;
   }
 `;
+const hasOwnColors = (svg) => /(?:fill|stroke)\s*=\s*["'](?:#|rgb|hsl|url\(#)/i.test(svg) || /(?:fill|stroke)\s*:\s*(?:#|rgb|hsl)/i.test(svg);
+const IconPreview = ({
+  svg,
+  color,
+  style
+}) => {
+  const icon = /* @__PURE__ */ jsxRuntime.jsx(Icon, { icon: svg, style });
+  if (hasOwnColors(svg)) return icon;
+  return /* @__PURE__ */ jsxRuntime.jsx(ThemeableIcon, { $color: color, children: icon });
+};
 const IconSelect = (props) => {
   const theme = styled.useTheme();
   const intl = reactIntl.useIntl();
@@ -121,7 +145,14 @@ const IconSelect = (props) => {
                         },
                         children: [
                           selectedIconData ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-                            /* @__PURE__ */ jsxRuntime.jsx(ThemeableIcon, { $color: theme.colors?.neutral800 || "currentColor", children: /* @__PURE__ */ jsxRuntime.jsx(Icon, { icon: selectedIconData.svg, style: { height: "24px", display: "block" } }) }),
+                            /* @__PURE__ */ jsxRuntime.jsx(
+                              IconPreview,
+                              {
+                                svg: selectedIconData.svg,
+                                color: theme.colors?.neutral800 || "currentColor",
+                                style: { height: "24px", display: "block" }
+                              }
+                            ),
                             /* @__PURE__ */ jsxRuntime.jsx(designSystem.Typography, { variant: "pi", children: selectedIconData.name })
                           ] }) : /* @__PURE__ */ jsxRuntime.jsx(designSystem.Typography, { style: { fontWeight: "400" }, children: placeholder ?? intl.formatMessage({
                             id: "icons-field.select",
@@ -234,10 +265,11 @@ const IconSelect = (props) => {
                         width: "85px"
                       },
                       children: [
-                        /* @__PURE__ */ jsxRuntime.jsx(ThemeableIcon, { $color: theme.colors?.neutral800 || "currentColor", children: /* @__PURE__ */ jsxRuntime.jsx(
-                          Icon,
+                        /* @__PURE__ */ jsxRuntime.jsx(
+                          IconPreview,
                           {
-                            icon: icon.svg,
+                            svg: icon.svg,
+                            color: theme.colors?.neutral800 || "currentColor",
                             style: {
                               aspectRatio: "1/1",
                               height: "100%",
@@ -245,8 +277,17 @@ const IconSelect = (props) => {
                               width: "100%"
                             }
                           }
-                        ) }),
-                        attribute?.options?.showIconLabel && /* @__PURE__ */ jsxRuntime.jsx(designSystem.Typography, { variant: "pi", fontWeight: "bold", textColor: "neutral800", style: { marginTop: 8 }, children: icon.name })
+                        ),
+                        attribute?.options?.showIconLabel && /* @__PURE__ */ jsxRuntime.jsx(
+                          designSystem.Typography,
+                          {
+                            variant: "pi",
+                            fontWeight: "bold",
+                            textColor: "neutral800",
+                            style: { marginTop: 8 },
+                            children: icon.name
+                          }
+                        )
                       ]
                     },
                     icon.name
@@ -266,3 +307,4 @@ const IconSelect = (props) => {
   ] });
 };
 exports.default = IconSelect;
+//# sourceMappingURL=IconSelect-C-A9r_f0.js.map

@@ -24,3 +24,4 @@ const fr = {
   "icons-field.options.advanced.outputFormat.name": "Nom de l'icône"
 };
 exports.default = fr;
+//# sourceMappingURL=fr-Cda7PegE.js.map

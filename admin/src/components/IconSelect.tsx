@@ -11,14 +11,46 @@ import { Field } from '@strapi/design-system';
 
 const ThemeableIcon = styled.span<{ $color: string }>`
   display: contents;
-  & > svg,
+
+  & > svg {
+    color: ${(p) => p.$color};
+  }
+
+  & > svg[stroke]:not([stroke='none']) {
+    stroke: ${(p) => p.$color};
+  }
+
+  & > svg:not([stroke]) {
+    fill: ${(p) => p.$color};
+  }
+
   & > svg *[fill]:not([fill='none']) {
     fill: ${(p) => p.$color};
   }
+
   & > svg *[stroke]:not([stroke='none']) {
     stroke: ${(p) => p.$color};
+    fill: none;
   }
 `;
+
+const hasOwnColors = (svg: string): boolean =>
+  /(?:fill|stroke)\s*=\s*["'](?:#|rgb|hsl|url\(#)/i.test(svg) ||
+  /(?:fill|stroke)\s*:\s*(?:#|rgb|hsl)/i.test(svg);
+
+const IconPreview = ({
+  svg,
+  color,
+  style,
+}: {
+  svg: string;
+  color: string;
+  style?: React.CSSProperties;
+}) => {
+  const icon = <Icon icon={svg} style={style} />;
+  if (hasOwnColors(svg)) return icon;
+  return <ThemeableIcon $color={color}>{icon}</ThemeableIcon>;
+};
 
 type IconSelectProps = {
   label: string;
@@ -140,9 +172,11 @@ const IconSelect = (props: IconSelectProps) => {
                 >
                   {selectedIconData ? (
                     <>
-                      <ThemeableIcon $color={theme.colors?.neutral800 || 'currentColor'}>
-                        <Icon icon={selectedIconData.svg} style={{ height: '24px', display: 'block' }} />
-                      </ThemeableIcon>
+                      <IconPreview
+                        svg={selectedIconData.svg}
+                        color={theme.colors?.neutral800 || 'currentColor'}
+                        style={{ height: '24px', display: 'block' }}
+                      />
                       <Typography variant="pi">{selectedIconData.name}</Typography>
                     </>
                   ) : (
@@ -198,7 +232,9 @@ const IconSelect = (props: IconSelectProps) => {
               <Searchbar
                 name="icon-search"
                 value={searchQuery}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setSearchQuery(e.target.value)
+                }
                 onClear={() => setSearchQuery('')}
                 clearLabel={intl.formatMessage({
                   id: 'icons-field.modal.search.clear',
@@ -236,7 +272,8 @@ const IconSelect = (props: IconSelectProps) => {
                 </Typography>
                 <Box display="flex" marginTop={2} style={{ flexWrap: 'wrap', gap: 6 }}>
                   {group.icons.map((icon) => {
-                    const isSelected = outputFormat === 'name' ? value === icon.name : value === icon.svg;
+                    const isSelected =
+                      outputFormat === 'name' ? value === icon.name : value === icon.svg;
                     return (
                       <Box
                         key={icon.name}
@@ -267,19 +304,23 @@ const IconSelect = (props: IconSelectProps) => {
                           width: '85px',
                         }}
                       >
-                        <ThemeableIcon $color={theme.colors?.neutral800 || 'currentColor'}>
-                          <Icon
-                            icon={icon.svg}
-                            style={{
-                              aspectRatio: '1/1',
-                              height: '100%',
-                              maxWidth: '25px',
-                              width: '100%',
-                            }}
-                          />
-                        </ThemeableIcon>
+                        <IconPreview
+                          svg={icon.svg}
+                          color={theme.colors?.neutral800 || 'currentColor'}
+                          style={{
+                            aspectRatio: '1/1',
+                            height: '100%',
+                            maxWidth: '25px',
+                            width: '100%',
+                          }}
+                        />
                         {attribute?.options?.showIconLabel && (
-                          <Typography variant="pi" fontWeight="bold" textColor="neutral800" style={{ marginTop: 8}}>
+                          <Typography
+                            variant="pi"
+                            fontWeight="bold"
+                            textColor="neutral800"
+                            style={{ marginTop: 8 }}
+                          >
                             {icon.name}
                           </Typography>
                         )}
