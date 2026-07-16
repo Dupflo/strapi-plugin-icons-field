@@ -57,7 +57,7 @@ const index = {
         defaultMessage: "Select any icon from your own config"
       },
       components: {
-        Input: async () => Promise.resolve().then(() => require("./IconSelect-C3tI7nD-.js"))
+        Input: async () => Promise.resolve().then(() => require("./IconSelect-C-A9r_f0.js"))
       },
       options: {
         base: [
@@ -171,3 +171,4 @@ const index = {
 };
 exports.PLUGIN_ID = PLUGIN_ID;
 exports.index = index;
+//# sourceMappingURL=index-BxK51aFm.js.map

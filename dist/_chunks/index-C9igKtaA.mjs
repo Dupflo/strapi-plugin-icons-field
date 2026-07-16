@@ -54,7 +54,7 @@ const index = {
         defaultMessage: "Select any icon from your own config"
       },
       components: {
-        Input: async () => import("./IconSelect-Dj-n2cVo.mjs")
+        Input: async () => import("./IconSelect-CKhQ-xwl.mjs")
       },
       options: {
         base: [
