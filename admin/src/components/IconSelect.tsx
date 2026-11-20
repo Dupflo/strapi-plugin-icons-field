@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Box, Typography, Button, Modal, Searchbar } from '@strapi/design-system';
 import { useFetchClient } from '@strapi/strapi/admin';
 import { PLUGIN_ID } from '../pluginId';
@@ -78,6 +78,7 @@ const IconSelect = (props: IconSelectProps) => {
     Array<{ folder: string; icons: Array<{ name: string; svg: string }> }>
   >([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const [searchQuery, setSearchQuery] = useState('');
 
   const { get } = useFetchClient();
@@ -218,7 +219,13 @@ const IconSelect = (props: IconSelectProps) => {
             )}
           </Box>
         </Modal.Trigger>
-        <Modal.Content>
+        <Modal.Content
+          onOpenAutoFocus={(event: Event) => {
+            // focus the search field instead of the first button, so users can type right away
+            event.preventDefault();
+            searchInputRef.current?.focus();
+          }}
+        >
           <Modal.Header>
             <Typography fontWeight="bold" textColor="neutral800" as="h2" id="title">
               {intl.formatMessage({
@@ -230,6 +237,7 @@ const IconSelect = (props: IconSelectProps) => {
           <Modal.Body>
             <Box marginBottom={4}>
               <Searchbar
+                ref={searchInputRef}
                 name="icon-search"
                 value={searchQuery}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>

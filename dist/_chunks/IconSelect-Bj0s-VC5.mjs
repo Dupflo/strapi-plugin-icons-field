@@ -1,8 +1,8 @@
 import { jsxs, jsx, Fragment } from "react/jsx-runtime";
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import { Field, Modal, Box, Button, Typography, Searchbar } from "@strapi/design-system";
 import { useFetchClient } from "@strapi/strapi/admin";
-import { P as PLUGIN_ID } from "./index-CGwL1r1A.mjs";
+import { P as PLUGIN_ID } from "./index-Bef3FYdk.mjs";
 import parse from "html-react-parser";
 import styled, { useTheme } from "styled-components";
 import { CaretDown, Cross } from "@strapi/icons";
@@ -54,6 +54,7 @@ const IconSelect = (props) => {
   const { label, hint, attribute, disabled, error, name, onChange, placeholder, required, value } = props;
   const [icons, setIcons] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const searchInputRef = useRef(null);
   const [searchQuery, setSearchQuery] = useState("");
   const { get } = useFetchClient();
   const toggleModal = () => setIsModalOpen((prev) => !prev);
@@ -188,112 +189,122 @@ const IconSelect = (props) => {
               ]
             }
           ) }),
-          /* @__PURE__ */ jsxs(Modal.Content, { children: [
-            /* @__PURE__ */ jsx(Modal.Header, { children: /* @__PURE__ */ jsx(Typography, { fontWeight: "bold", textColor: "neutral800", as: "h2", id: "title", children: intl.formatMessage({
-              id: "icons-field.modal.title",
-              defaultMessage: "Select an icon"
-            }) }) }),
-            /* @__PURE__ */ jsxs(Modal.Body, { children: [
-              /* @__PURE__ */ jsx(Box, { marginBottom: 4, children: /* @__PURE__ */ jsx(
-                Searchbar,
-                {
-                  name: "icon-search",
-                  value: searchQuery,
-                  onChange: (e) => setSearchQuery(e.target.value),
-                  onClear: () => setSearchQuery(""),
-                  clearLabel: intl.formatMessage({
-                    id: "icons-field.modal.search.clear",
-                    defaultMessage: "Clear search"
-                  }),
-                  placeholder: intl.formatMessage({
-                    id: "icons-field.modal.search.placeholder",
-                    defaultMessage: "Search icons..."
-                  }),
-                  children: intl.formatMessage({
-                    id: "icons-field.modal.search.placeholder",
-                    defaultMessage: "Search icons..."
-                  })
-                }
-              ) }),
-              filteredIcons.length === 0 && /* @__PURE__ */ jsx(Typography, { textColor: "neutral500", children: intl.formatMessage({
-                id: "icons-field.modal.search.empty",
-                defaultMessage: "No icons found."
-              }) }),
-              filteredIcons.map((group) => /* @__PURE__ */ jsxs(Box, { marginBottom: 6, children: [
-                /* @__PURE__ */ jsx(
-                  Typography,
-                  {
-                    fontWeight: "bold",
-                    textColor: "neutral800",
-                    as: "h3",
-                    id: "title",
-                    marginBottom: 2,
-                    children: group.folder
-                  }
-                ),
-                /* @__PURE__ */ jsx(Box, { display: "flex", marginTop: 2, style: { flexWrap: "wrap", gap: 6 }, children: group.icons.map((icon) => {
-                  const isSelected = outputFormat === "name" ? value === icon.name : value === icon.svg;
-                  return /* @__PURE__ */ jsxs(
-                    Box,
+          /* @__PURE__ */ jsxs(
+            Modal.Content,
+            {
+              onOpenAutoFocus: (event) => {
+                event.preventDefault();
+                searchInputRef.current?.focus();
+              },
+              children: [
+                /* @__PURE__ */ jsx(Modal.Header, { children: /* @__PURE__ */ jsx(Typography, { fontWeight: "bold", textColor: "neutral800", as: "h2", id: "title", children: intl.formatMessage({
+                  id: "icons-field.modal.title",
+                  defaultMessage: "Select an icon"
+                }) }) }),
+                /* @__PURE__ */ jsxs(Modal.Body, { children: [
+                  /* @__PURE__ */ jsx(Box, { marginBottom: 4, children: /* @__PURE__ */ jsx(
+                    Searchbar,
                     {
-                      as: "button",
-                      type: "button",
-                      "aria-label": icon.name,
-                      onClick: () => {
-                        handleChange(icon);
-                        toggleModal();
-                      },
-                      style: {
-                        alignItems: "center",
-                        aspectRatio: "1/1",
-                        background: isSelected ? theme.colors?.primary100 : theme.colors?.neutral100,
-                        border: isSelected ? `2px solid ${theme.colors?.primary600}` : `1px solid ${theme.colors?.neutral200}`,
-                        borderRadius: "4px",
-                        cursor: "pointer",
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "2px",
-                        height: "100%",
-                        justifyContent: "center",
-                        padding: "12px",
-                        width: "85px"
-                      },
-                      children: [
-                        /* @__PURE__ */ jsx(
-                          IconPreview,
-                          {
-                            svg: icon.svg,
-                            color: theme.colors?.neutral800 || "currentColor",
-                            style: {
-                              aspectRatio: "1/1",
-                              height: "100%",
-                              maxWidth: "25px",
-                              width: "100%"
-                            }
-                          }
-                        ),
-                        attribute?.options?.showIconLabel && /* @__PURE__ */ jsx(
-                          Typography,
-                          {
-                            variant: "pi",
-                            fontWeight: "bold",
-                            textColor: "neutral800",
-                            style: { marginTop: 8 },
-                            children: icon.name
-                          }
-                        )
-                      ]
-                    },
-                    icon.name
-                  );
-                }) })
-              ] }, group.folder))
-            ] }),
-            /* @__PURE__ */ jsx(Modal.Footer, { children: /* @__PURE__ */ jsx(Modal.Close, { children: /* @__PURE__ */ jsx(Button, { variant: "tertiary", children: intl.formatMessage({
-              id: "icons-field.modal.close",
-              defaultMessage: "Close window"
-            }) }) }) })
-          ] })
+                      ref: searchInputRef,
+                      name: "icon-search",
+                      value: searchQuery,
+                      onChange: (e) => setSearchQuery(e.target.value),
+                      onClear: () => setSearchQuery(""),
+                      clearLabel: intl.formatMessage({
+                        id: "icons-field.modal.search.clear",
+                        defaultMessage: "Clear search"
+                      }),
+                      placeholder: intl.formatMessage({
+                        id: "icons-field.modal.search.placeholder",
+                        defaultMessage: "Search icons..."
+                      }),
+                      children: intl.formatMessage({
+                        id: "icons-field.modal.search.placeholder",
+                        defaultMessage: "Search icons..."
+                      })
+                    }
+                  ) }),
+                  filteredIcons.length === 0 && /* @__PURE__ */ jsx(Typography, { textColor: "neutral500", children: intl.formatMessage({
+                    id: "icons-field.modal.search.empty",
+                    defaultMessage: "No icons found."
+                  }) }),
+                  filteredIcons.map((group) => /* @__PURE__ */ jsxs(Box, { marginBottom: 6, children: [
+                    /* @__PURE__ */ jsx(
+                      Typography,
+                      {
+                        fontWeight: "bold",
+                        textColor: "neutral800",
+                        as: "h3",
+                        id: "title",
+                        marginBottom: 2,
+                        children: group.folder
+                      }
+                    ),
+                    /* @__PURE__ */ jsx(Box, { display: "flex", marginTop: 2, style: { flexWrap: "wrap", gap: 6 }, children: group.icons.map((icon) => {
+                      const isSelected = outputFormat === "name" ? value === icon.name : value === icon.svg;
+                      return /* @__PURE__ */ jsxs(
+                        Box,
+                        {
+                          as: "button",
+                          type: "button",
+                          "aria-label": icon.name,
+                          onClick: () => {
+                            handleChange(icon);
+                            toggleModal();
+                          },
+                          style: {
+                            alignItems: "center",
+                            aspectRatio: "1/1",
+                            background: isSelected ? theme.colors?.primary100 : theme.colors?.neutral100,
+                            border: isSelected ? `2px solid ${theme.colors?.primary600}` : `1px solid ${theme.colors?.neutral200}`,
+                            borderRadius: "4px",
+                            cursor: "pointer",
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "2px",
+                            height: "100%",
+                            justifyContent: "center",
+                            padding: "12px",
+                            width: "85px"
+                          },
+                          children: [
+                            /* @__PURE__ */ jsx(
+                              IconPreview,
+                              {
+                                svg: icon.svg,
+                                color: theme.colors?.neutral800 || "currentColor",
+                                style: {
+                                  aspectRatio: "1/1",
+                                  height: "100%",
+                                  maxWidth: "25px",
+                                  width: "100%"
+                                }
+                              }
+                            ),
+                            attribute?.options?.showIconLabel && /* @__PURE__ */ jsx(
+                              Typography,
+                              {
+                                variant: "pi",
+                                fontWeight: "bold",
+                                textColor: "neutral800",
+                                style: { marginTop: 8 },
+                                children: icon.name
+                              }
+                            )
+                          ]
+                        },
+                        icon.name
+                      );
+                    }) })
+                  ] }, group.folder))
+                ] }),
+                /* @__PURE__ */ jsx(Modal.Footer, { children: /* @__PURE__ */ jsx(Modal.Close, { children: /* @__PURE__ */ jsx(Button, { variant: "tertiary", children: intl.formatMessage({
+                  id: "icons-field.modal.close",
+                  defaultMessage: "Close window"
+                }) }) }) })
+              ]
+            }
+          )
         ]
       }
     ),
@@ -303,4 +314,3 @@ const IconSelect = (props) => {
 export {
   IconSelect as default
 };
-//# sourceMappingURL=IconSelect-d7-HnBJE.mjs.map
