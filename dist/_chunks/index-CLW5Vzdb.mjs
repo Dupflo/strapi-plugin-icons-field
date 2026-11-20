@@ -1,11 +1,8 @@
-"use strict";
-const React = require("react");
-const jsxRuntime = require("react/jsx-runtime");
-const designSystem = require("@strapi/design-system");
-const styled = require("styled-components");
-const icons = require("@strapi/icons");
-const _interopDefault = (e) => e && e.__esModule ? e : { default: e };
-const styled__default = /* @__PURE__ */ _interopDefault(styled);
+import { useRef, useEffect } from "react";
+import { jsx } from "react/jsx-runtime";
+import { Flex } from "@strapi/design-system";
+import styled from "styled-components";
+import { Rocket } from "@strapi/icons";
 const __variableDynamicImportRuntimeHelper = (glob, path, segs) => {
   const v = glob[path];
   if (v) {
@@ -24,13 +21,13 @@ const __variableDynamicImportRuntimeHelper = (glob, path, segs) => {
 };
 const PLUGIN_ID = "icons-field";
 const Initializer = ({ setPlugin }) => {
-  const ref = React.useRef(setPlugin);
-  React.useEffect(() => {
+  const ref = useRef(setPlugin);
+  useEffect(() => {
     ref.current(PLUGIN_ID);
   }, []);
   return null;
 };
-const IconBox = styled__default.default(designSystem.Flex)`
+const IconBox = styled(Flex)`
   background-color: #ddfaf2;
   border: 1px solid #87cec5;
 
@@ -39,7 +36,7 @@ const IconBox = styled__default.default(designSystem.Flex)`
   }
 `;
 const PluginIcon = () => {
-  return /* @__PURE__ */ jsxRuntime.jsx(IconBox, { justifyContent: "center", alignItems: "center", width: 7, height: 6, hasRadius: true, "aria-hidden": true, children: /* @__PURE__ */ jsxRuntime.jsx(icons.Rocket, {}) });
+  return /* @__PURE__ */ jsx(IconBox, { justifyContent: "center", alignItems: "center", width: 7, height: 6, hasRadius: true, "aria-hidden": true, children: /* @__PURE__ */ jsx(Rocket, {}) });
 };
 const index = {
   register(app) {
@@ -57,7 +54,7 @@ const index = {
         defaultMessage: "Select any icon from your own config"
       },
       components: {
-        Input: async () => Promise.resolve().then(() => require("./IconSelect-C-A9r_f0.js"))
+        Input: async () => import("./IconSelect-Cs6aoCcZ.mjs")
       },
       options: {
         base: [
@@ -160,7 +157,7 @@ const index = {
     return Promise.all(
       locales.map(async (locale) => {
         try {
-          const { default: data } = await __variableDynamicImportRuntimeHelper(/* @__PURE__ */ Object.assign({ "./translations/en.json": () => Promise.resolve().then(() => require("./en-v5566hIn.js")), "./translations/fr.json": () => Promise.resolve().then(() => require("./fr-Cda7PegE.js")) }), `./translations/${locale}.json`, 3);
+          const { default: data } = await __variableDynamicImportRuntimeHelper(/* @__PURE__ */ Object.assign({ "./translations/en.json": () => import("./en-CyOHZXDV.mjs"), "./translations/fr.json": () => import("./fr-Bi2USSJP.mjs") }), `./translations/${locale}.json`, 3);
           return { data, locale };
         } catch {
           return { data: {}, locale };
@@ -169,6 +166,7 @@ const index = {
     );
   }
 };
-exports.PLUGIN_ID = PLUGIN_ID;
-exports.index = index;
-//# sourceMappingURL=index-BxK51aFm.js.map
+export {
+  PLUGIN_ID as P,
+  index as i
+};

@@ -17,7 +17,7 @@
 ## Features 🎨
 
 - **Icon Picker**: Adds an icon field to your content types, enabling users to select from a variety of preloaded icons.
-- **Search**: Filter icons by name directly in the picker modal.
+- **Search**: Filter icons by name and by synonyms directly in the picker modal.
 - **Flexible output**: Choose between returning the full SVG code or just the icon name — ideal for SVG sprite workflows.
 - **Customizable**: You can add any svg icons code directly from the `public` folder inside a custom subfolder (eg: `public/icons`), making this plugin adaptable to any design or theme.
 - **Pass SVG code directly into your API**: No additional package needed on your frontend. You can directly rendered the plugin with a [custom component](#render-svg-icons-in-react) custom component on your frontend.
@@ -113,6 +113,40 @@ A typical use case is when using an SVG sprite system on your frontend. The SVG 
 ```
 
 See this [sandbox example](https://codesandbox.io/p/sandbox/svg-workflow-xf7p8j?file=%2Fsrc%2Fcomponents%2FSvg.componet.tsx) for a practical implementation.
+
+### Search synonyms 🔎
+
+File names are often in one language (e.g. `night-splint`) while editors search in another (e.g. "Knirscherschiene").
+Put a `_synonyms.json` next to your icons to make them findable by additional terms:
+
+```json
+{
+  "_comment": "Keys starting with _ are ignored",
+  "night-splint": {
+    "de": ["Knirscherschiene", "Aufbissschiene", "Bruxismus"],
+    "en": ["night guard", "bite splint", "teeth grinding"]
+  },
+  "x-ray": ["Röntgen", "DVT"]
+}
+```
+
+A value can be a list of terms or an object grouping lists by language (any keys; all terms are searched).
+
+- **`public/icons/_synonyms.json`** applies to every icon folder (useful when several sets share the same file names).
+- **`public/icons/<folder>/_synonyms.json`** adds terms for that folder only; both lists are merged.
+- The search is case-insensitive, ignores umlauts/accents (`rontgen` finds `Röntgen`) and treats dashes as spaces.
+  With several words, every word must match the name or one of the synonyms.
+- Hovering an icon in the picker shows its synonyms.
+- A missing or invalid file never breaks the picker; it only logs a warning.
+
+The file name can be changed in `config/plugins.js`:
+
+```js
+'icons-field': {
+  enabled: true,
+  config: { synonymsFile: '_synonyms.json' },
+},
+```
 
 ---
 
