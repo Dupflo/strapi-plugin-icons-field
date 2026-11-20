@@ -4,7 +4,7 @@ const jsxRuntime = require("react/jsx-runtime");
 const React = require("react");
 const designSystem = require("@strapi/design-system");
 const admin = require("@strapi/strapi/admin");
-const index = require("./index-BxK51aFm.js");
+const index = require("./index-2zkeDb5Y.js");
 const parse = require("html-react-parser");
 const styled = require("styled-components");
 const icons = require("@strapi/icons");
@@ -54,6 +54,11 @@ const IconPreview = ({
   if (hasOwnColors(svg)) return icon;
   return /* @__PURE__ */ jsxRuntime.jsx(ThemeableIcon, { $color: color, children: icon });
 };
+const normalize = (text) => text.toLowerCase().replace(/ß/g, "ss").normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[-_]+/g, " ");
+const matchesQuery = (icon, queryTerms) => {
+  const haystack = normalize([icon.name, ...icon.keywords || []].join(" | "));
+  return queryTerms.every((term) => haystack.includes(term));
+};
 const IconSelect = (props) => {
   const theme = styled.useTheme();
   const intl = reactIntl.useIntl();
@@ -96,11 +101,11 @@ const IconSelect = (props) => {
     return allIcons.find((icon) => icon.svg === value);
   }, [value, allIcons, outputFormat]);
   const filteredIcons = React.useMemo(() => {
-    if (!searchQuery.trim()) return icons$1;
-    const query = searchQuery.toLowerCase();
+    const queryTerms = normalize(searchQuery).split(/\s+/).filter(Boolean);
+    if (!queryTerms.length) return icons$1;
     return icons$1.map((group) => ({
       ...group,
-      icons: group.icons.filter((icon) => icon.name.toLowerCase().includes(query))
+      icons: group.icons.filter((icon) => matchesQuery(icon, queryTerms))
     })).filter((group) => group.icons.length > 0);
   }, [icons$1, searchQuery]);
   const handleUnselectedIcon = (e) => {
@@ -245,6 +250,7 @@ const IconSelect = (props) => {
                       as: "button",
                       type: "button",
                       "aria-label": icon.name,
+                      title: icon.keywords?.length ? `${icon.name} (${icon.keywords.join(", ")})` : icon.name,
                       onClick: () => {
                         handleChange(icon);
                         toggleModal();
@@ -307,4 +313,3 @@ const IconSelect = (props) => {
   ] });
 };
 exports.default = IconSelect;
-//# sourceMappingURL=IconSelect-C-A9r_f0.js.map

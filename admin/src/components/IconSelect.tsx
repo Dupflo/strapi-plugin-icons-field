@@ -52,6 +52,23 @@ const IconPreview = ({
   return <ThemeableIcon $color={color}>{icon}</ThemeableIcon>;
 };
 
+type IconData = { name: string; svg: string; keywords?: string[] };
+
+/** lowercase, umlauts/accents folded (ä -> a, ß -> ss), dashes/underscores as spaces */
+const normalize = (text: string): string =>
+  text
+    .toLowerCase()
+    .replace(/ß/g, 'ss')
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[-_]+/g, ' ');
+
+/** every word of the query must appear in the icon name or one of its synonyms */
+const matchesQuery = (icon: IconData, queryTerms: string[]): boolean => {
+  const haystack = normalize([icon.name, ...(icon.keywords || [])].join(' | '));
+  return queryTerms.every((term) => haystack.includes(term));
+};
+
 type IconSelectProps = {
   label: string;
   hint: string;
@@ -74,9 +91,7 @@ const IconSelect = (props: IconSelectProps) => {
   const { label, hint, attribute, disabled, error, name, onChange, placeholder, required, value } =
     props;
 
-  const [icons, setIcons] = useState<
-    Array<{ folder: string; icons: Array<{ name: string; svg: string }> }>
-  >([]);
+  const [icons, setIcons] = useState<Array<{ folder: string; icons: IconData[] }>>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -106,7 +121,7 @@ const IconSelect = (props: IconSelectProps) => {
 
   const outputFormat: 'svg' | 'name' = attribute?.options?.outputFormat || 'svg';
 
-  const handleChange = (icon: { name: string; svg: string }) => {
+  const handleChange = (icon: IconData) => {
     const storedValue = outputFormat === 'name' ? icon.name : icon.svg;
     onChange({ target: { name, value: storedValue, type: attribute.type } });
   };
@@ -122,12 +137,12 @@ const IconSelect = (props: IconSelectProps) => {
   }, [value, allIcons, outputFormat]);
 
   const filteredIcons = useMemo(() => {
-    if (!searchQuery.trim()) return icons;
-    const query = searchQuery.toLowerCase();
+    const queryTerms = normalize(searchQuery).split(/\s+/).filter(Boolean);
+    if (!queryTerms.length) return icons;
     return icons
       .map((group) => ({
         ...group,
-        icons: group.icons.filter((icon) => icon.name.toLowerCase().includes(query)),
+        icons: group.icons.filter((icon) => matchesQuery(icon, queryTerms)),
       }))
       .filter((group) => group.icons.length > 0);
   }, [icons, searchQuery]);
@@ -280,6 +295,11 @@ const IconSelect = (props: IconSelectProps) => {
                         as="button"
                         type="button"
                         aria-label={icon.name}
+                        title={
+                          icon.keywords?.length
+                            ? `${icon.name} (${icon.keywords.join(', ')})`
+                            : icon.name
+                        }
                         onClick={() => {
                           handleChange(icon);
                           toggleModal();
