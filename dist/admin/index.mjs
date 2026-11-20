@@ -1,5 +1,4 @@
-import { i } from "../_chunks/index-CGwL1r1A.mjs";
+import { i } from "../_chunks/index-Bef3FYdk.mjs";
 export {
   i as default
 };
-//# sourceMappingURL=index.mjs.map
